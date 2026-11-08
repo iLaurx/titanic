@@ -1,0 +1,99 @@
+ACTIVIDAD 7: REGRESIÓN LOGÍSTICA - TITANIC
+Pasajeros: 891; entrenamiento: 712; prueba: 179
+Supervivencia: 0 = no sobrevivió, 1 = sobrevivió.
+Valores faltantes en las variables utilizadas:
+Sex           0
+Pclass        0
+Age         177
+Fare          0
+SibSp         0
+Survived      0
+
+MODELO BASE
+Variables numéricas: Pclass, Age; categórica: Sex
+Intercepto: 4.6564
+Coeficientes y razones de odds:
+         Variable  Coeficiente  Razon_de_odds
+numericas__Pclass    -1.157113       0.314392
+   numericas__Age    -0.034186       0.966392
+   sexo__Sex_male    -2.521337       0.080352
+AUC: 0.8360
+
+Umbral: 0.5
+Matriz (filas reales, columnas predichas; orden 0, 1):
+[[92 18]
+ [21 48]]
+              precision    recall  f1-score   support
+
+           0       0.81      0.84      0.83       110
+           1       0.73      0.70      0.71        69
+
+    accuracy                           0.78       179
+   macro avg       0.77      0.77      0.77       179
+weighted avg       0.78      0.78      0.78       179
+
+
+Umbral: 0.7
+Matriz (filas reales, columnas predichas; orden 0, 1):
+[[106   4]
+ [ 38  31]]
+              precision    recall  f1-score   support
+
+           0       0.74      0.96      0.83       110
+           1       0.89      0.45      0.60        69
+
+    accuracy                           0.77       179
+   macro avg       0.81      0.71      0.72       179
+weighted avg       0.79      0.77      0.74       179
+
+
+MODELO AMPLIADO
+Variables numéricas: Pclass, Age, Fare, SibSp; categórica: Sex
+Intercepto: 4.6705
+Coeficientes y razones de odds:
+         Variable  Coeficiente  Razon_de_odds
+numericas__Pclass    -1.066839       0.344094
+   numericas__Age    -0.038451       0.962279
+  numericas__Fare     0.002744       1.002747
+ numericas__SibSp    -0.293553       0.745609
+   sexo__Sex_male    -2.576763       0.076020
+AUC: 0.8519
+
+Umbral: 0.5
+Matriz (filas reales, columnas predichas; orden 0, 1):
+[[95 15]
+ [20 49]]
+              precision    recall  f1-score   support
+
+           0       0.83      0.86      0.84       110
+           1       0.77      0.71      0.74        69
+
+    accuracy                           0.80       179
+   macro avg       0.80      0.79      0.79       179
+weighted avg       0.80      0.80      0.80       179
+
+
+Umbral: 0.7
+Matriz (filas reales, columnas predichas; orden 0, 1):
+[[108   2]
+ [ 38  31]]
+              precision    recall  f1-score   support
+
+           0       0.74      0.98      0.84       110
+           1       0.94      0.45      0.61        69
+
+    accuracy                           0.78       179
+   macro avg       0.84      0.72      0.73       179
+weighted avg       0.82      0.78      0.75       179
+
+
+Resumen de métricas:
+  Modelo  Umbral  Accuracy  Precision   Recall       F1      AUC
+    Base     0.5  0.782123   0.727273 0.695652 0.711111 0.835968
+    Base     0.7  0.765363   0.885714 0.449275 0.596154 0.835968
+Ampliado     0.5  0.804469   0.765625 0.710145 0.736842 0.851910
+Ampliado     0.7  0.776536   0.939394 0.449275 0.607843 0.851910
+
+Los coeficientes expresan cambios en log-odds por unidad, manteniendo las demás variables constantes.
+Sex_male compara hombres con mujeres (referencia). Un coeficiente positivo aumenta las odds; uno negativo las reduce.
+Las magnitudes de coeficientes con distintas unidades no son directamente comparables. Asociación no implica causalidad.
